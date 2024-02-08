@@ -1,49 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tshirt index{% endblock %}
+{% block title %}Catalogue des T-shirts{% endblock %}
 
 {% block body %}
-    <h1>Tshirt index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Couleur</th>
-                <th>Taille</th>
-                <th>Description</th>
-                <th>Moyendepaiement</th>
-                <th>Online</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="container">
+    <div class="row">
         {% for tshirt in tshirts %}
-            <tr>
-                <td>{{ tshirt.id }}</td>
-                <td>{{ tshirt.nom }}</td>
-                <td>{{ tshirt.prix }}</td>
-                <td>{{ tshirt.couleur }}</td>
-                <td>{{ tshirt.taille }}</td>
-                <td>{{ tshirt.description }}</td>
-                <td>{{ tshirt.moyendepaiement }}</td>
-                <td>{{ tshirt.online ? 'Yes' : 'No' }}</td>
-                <td>{{ tshirt.image }}</td>
-                <td>
-                    <a href="{{ path('app_tshirt_show', {'id': tshirt.id}) }}">show</a>
-                    <a href="{{ path('app_tshirt_edit', {'id': tshirt.id}) }}">edit</a>
-                </td>
-            </tr>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if tshirt.image %}
+                <img src="{{ tshirt.image }}" class="card-img-top" alt="Image de {{ tshirt.nom }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ tshirt.nom }}</h5>
+                    <p class="card-text">{{ tshirt.description }}</p>
+                    <p class="card-text">Prix : {{ tshirt.prix }} €</p>
+                    <p class="card-text">Taille : {{ tshirt.taille }}</p>
+                    <a href="#" class="btn btn-primary">Voir plus</a>
+                </div>
+            </div>
+        </div>
         {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
+        <p>Aucun t-shirt trouvé.</p>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_tshirt_new') }}">Create new</a>
+    </div>
+</div>
 {% endblock %}

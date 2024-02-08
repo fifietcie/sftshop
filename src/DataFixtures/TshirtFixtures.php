@@ -18,12 +18,12 @@ class TshirtFixtures extends Fixture
 
             $tshirt->setNom($faker->word())
                 ->setPrix($faker->numberBetween(10, 100))
-                ->setCouleur($faker->safeColorName())
-                ->setTaille($faker->randomElement(['S', 'M', 'L', 'XL']))
+                ->setCouleur($faker->safeColorName(['Beige','Blanc','Bleu','Gris','Jaune','Kaki','Marron','Noir','Orange','Rose','Rouge','Vert','Violet']))
+                ->setTaille($faker->randomElement(['2XS','S','M','L','XL','2XL','3XL']))
                 ->setDescription($faker->sentence())
-                ->setMoyenDePaiement($faker->randomElement(['Carte de crédit', 'PayPal', 'Virement']))
-                ->setOnline($faker->boolean(90)) // 90% de chance d'être en ligne
-                ->setImage($faker->imageUrl(640, 480, 'fashion', true, 'Tshirt'));
+                ->setMoyenDePaiement($faker->randomElement(['Carte de crédit', 'Chèque' ,'Virement', 'Prélèvement']))
+                ->setOnline($faker->boolean(90))
+                ->setImage($faker->imageUrl(200, 300, 'fashion', true, 'Tshirt'));
 
             $manager->persist($tshirt);
         }

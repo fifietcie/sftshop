@@ -11,14 +11,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/tshirt')]
+#[Route('/catalogue')]
 class TshirtController extends AbstractController
 {
     #[Route('/', name: 'app_tshirt_index', methods: ['GET'])]
     public function index(TshirtRepository $tshirtRepository): Response
     {
+        $tshirts = $tshirtRepository->findAll();
+
         return $this->render('tshirt/index.html.twig', [
-            'tshirts' => $tshirtRepository->findAll(),
+            'tshirts' => $tshirts,
         ]);
     }
 
