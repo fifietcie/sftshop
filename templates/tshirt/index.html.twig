@@ -1,29 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catalogue des T-shirts{% endblock %}
+{% block title %}Catalogue des T-shirts
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        {% for tshirt in tshirts %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                {% if tshirt.image %}
-                <img src="{{ tshirt.image }}" class="card-img-top" alt="Image de {{ tshirt.nom }}">
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ tshirt.nom }}</h5>
-                    <p class="card-text">{{ tshirt.description }}</p>
-                    <p class="card-text">Prix : {{ tshirt.prix }} €</p>
-                    <p class="card-text">Taille : {{ tshirt.taille }}</p>
-                    <p class="card-text">Moyen de paiement : {{ tshirt.moyendepaiement }}</p>
-                    <a href="#" class="btn btn-primary">Voir plus</a>
-                </div>
-            </div>
-        </div>
-        {% else %}
-        <p>Aucun t-shirt trouvé.</p>
-        {% endfor %}
-    </div>
-</div>
+	<div>
+		<div class="card-container">
+			{% for tshirt in tshirts %}
+
+				<div class="card">
+					{# {{ dump(tshirt.image) }} #}
+					{% if tshirt.image %}
+						<img src="{{ tshirt.image }}" class="card-img-top" alt="Image de {{ tshirt.nom }}">
+					{% endif %}
+					<div class="card-body">
+						<h5 class="card-title">{{ tshirt.nom }}</h5>
+						<p class="card-text">{{ tshirt.description }}</p>
+						<p class="card-text">Prix :
+							{{ tshirt.prix }}
+							€</p>
+						<p class="card-text">Taille :
+							{{ tshirt.taille }}</p>
+						<p class="card-text">Moyen de paiement :
+							{{ tshirt.moyendepaiement }}</p>
+						<a href="#" class="btn btn-primary">Voir plus</a>
+					</div>
+				</div>
+
+			{% else %}
+				<p>Aucun t-shirt trouvé.</p>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

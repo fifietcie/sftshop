@@ -16,7 +16,7 @@ class TshirtFixtures extends Fixture
         $couleurs = ['Beige','Blanc','Bleu','Gris','Jaune','Kaki','Marron','Noir','Orange','Rose','Rouge','Vert','Violet'];
 
 
-        for ($i = 0; $i <= 30; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $tshirt = new Tshirt();
 
             $tshirt->setNom($faker->word())
@@ -26,7 +26,7 @@ class TshirtFixtures extends Fixture
                 ->setDescription($faker->sentence())
                 ->setMoyenDePaiement($faker->randomElement(['Carte de crédit', 'Chèque' ,'Virement', 'Prélèvement']))
                 ->setOnline($faker->boolean(90))
-                ->setImage($faker->imageUrl(200, 300, 'fashion', true, 'Tshirt'));
+                ->setImage($faker->imageUrl(200, 200, 'fashion', true, 'Tshirt'));
 
             $manager->persist($tshirt);
         }
