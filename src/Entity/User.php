@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -19,8 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column]
-    private array $roles = [];
-
+    private array $roles = ['ROLE_USER'];
     /**
      * @var string The hashed password
      */
@@ -33,7 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable:true )]
     private ?string $age = null;
 
     #[ORM\Column(length: 255)]
@@ -42,8 +43,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $telephone = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $motdepasse = null;
+    // #[ORM\Column(length: 255)]
+    // private ?string $motdepasse = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $avatar = null;
 
     public function getId(): ?int
     {
@@ -144,7 +148,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->age;
     }
 
-    public function setAge(string $age): static
+    public function setAge(?int $age): static
     {
         $this->age = $age;
 
@@ -175,14 +179,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getMotdepasse(): ?string
+    // public function getMotdepasse(): ?string
+    // {
+    //     return $this->motdepasse;
+    // }
+
+    // public function setMotdepasse(string $motdepasse): static
+    // {
+    //     $this->motdepasse = $motdepasse;
+
+    //     return $this;
+    // }
+
+    public function getAvatar(): ?string
     {
-        return $this->motdepasse;
+        return $this->avatar;
     }
 
-    public function setMotdepasse(string $motdepasse): static
+    public function setAvatar(string $avatar): static
     {
-        $this->motdepasse = $motdepasse;
+        $this->avatar = $avatar;
 
         return $this;
     }

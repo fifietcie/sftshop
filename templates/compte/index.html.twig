@@ -9,12 +9,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<h1>Mon Compte</h1>
 
-    This friendly message is coming from:
+    <p>Bienvenue, {{ app.user.prenom }} !</p>
+    <p>Voici vos informations :</p>
     <ul>
-        <li>Your controller at <code>C:/wamp64/www/sftshop/src/Controller/CompteController.php</code></li>
-        <li>Your template at <code>C:/wamp64/www/sftshop/templates/compte/index.html.twig</code></li>
+        <li>Email: {{ app.user.email }}</li>
+        <li>Nom: {{ app.user.nom }}</li>
+        <li>Prénom: {{ app.user.prenom }}</li>
+        <li>Âge: {{ app.user.age }}</li>
+        <li>Adresse: {{ app.user.adresse }}</li>
+        <li>Téléphone: {{ app.user.telephone }}</li>
+        <!-- Ajoute d'autres informations en fonction de ton modèle User -->
     </ul>
-</div>
 {% endblock %}
