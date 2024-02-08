@@ -13,13 +13,12 @@
 
     <p>Bienvenue, {{ app.user.prenom }} !</p>
     <p>Voici vos informations :</p>
-    <ul>
+    <ul class="monCompte">
         <li>Email: {{ app.user.email }}</li>
         <li>Nom: {{ app.user.nom }}</li>
         <li>Prénom: {{ app.user.prenom }}</li>
         <li>Âge: {{ app.user.age }}</li>
         <li>Adresse: {{ app.user.adresse }}</li>
         <li>Téléphone: {{ app.user.telephone }}</li>
-        <!-- Ajoute d'autres informations en fonction de ton modèle User -->
     </ul>
 {% endblock %}
